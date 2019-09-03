@@ -15,13 +15,13 @@ var config = {
 
 
     var name = $("#name-input").val().trim();
-    var role = $("#destination-input").val().trim();
-    var startDate = $("#FirstTrain-input").val().trim();
-    var monthlyRate = $("#Frequency-input").val().trim();
+    var destination = $("#destination-input").val().trim();
+    var FirstTrain = $("#FirstTrain-input").val().trim();
+    var Frequency = $("#Frequency-input").val().trim();
     console.log(name);
     database.ref().push({
         name: name,
-        Frequency: Frequency,
+        destination: destination,
         FirstTrain: FirstTrain,
         Frequency: Frequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
@@ -35,3 +35,14 @@ var config = {
     $("#Frequency-input").val("");
     
   });
+  database.ref().on("child_added", function(snapshot){
+    var sv = snapshot.val();
+    var tname = $("<td>").text(sv.name);
+    var tdestination = $("<td>").text(sv.destination);
+    var tFirstTrain = $("<td>").text(sv.FirstTrain);
+    var tFrequency = $("<td>").text(sv.Frequency);
+    var trow = $("<tr>");
+    trow.append(tname, tdestination, tFirstTrain, tFrequency);
+    $("tbody").append(trow);
+
+})
