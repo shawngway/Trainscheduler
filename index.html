@@ -8,6 +8,8 @@
     <title>TrainScheduler</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
     <link rel="stylesheet" href="assets/style/reset.css">
     <link rel="stylesheet" href="assets/style/style.css">
 </head>
@@ -62,22 +64,21 @@
                     </div>
                     <div class="form-group">
                         <label>First Train Time(HH:mm - military time)</label>
-                        <input type="number" class="form-control" id="FirstTrain-input" placeholder="HHmm">
+                        <input type="number" class="form-control" id="firstTrain-input" placeholder="HHmm">
                     </div>
                     <div class="form-group">
                         <label>Frequency (min)</label>
-                        <input type="number" class="form-control" id="Frequency-input" placeholder="Frequency">
+                        <input type="number" class="form-control" id="frequency-input" placeholder="Frequency">
                     </div>
                     <button type="submit" class="btn btn-primary" id="add-train">Submit</button>
                 </form>
             </div>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
-    <link src="assets/script/cogs.js">
+    <script src="assets/script/cogs.js"></script>
 </body>
 
 </html>

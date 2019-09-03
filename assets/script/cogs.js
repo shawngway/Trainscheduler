@@ -9,40 +9,41 @@ var config = {
   };
   firebase.initializeApp(config);
   var database = firebase.database();
+
   $("#add-train").on("click", function(event) {
 
     event.preventDefault();
 
-
+    console.log("working");
     var name = $("#name-input").val().trim();
     var destination = $("#destination-input").val().trim();
-    var FirstTrain = $("#FirstTrain-input").val().trim();
-    var Frequency = $("#Frequency-input").val().trim();
+    var firstTrain = $("#firstTrain-input").val().trim();
+    var frequency = $("#frequency-input").val().trim();
     console.log(name);
     database.ref().push({
         name: name,
         destination: destination,
-        FirstTrain: FirstTrain,
-        Frequency: Frequency,
+        firstTrain: firstTrain,
+        frequency: frequency,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
 
 
     })
     console.log(name);
     $("#name-input").val("");
-    $("#Frequency-input").val("");
-    $("#FirstTrain-input").val("");
-    $("#Frequency-input").val("");
+    $("#frequency-input").val("");
+    $("#firstTrain-input").val("");
+    $("#frequency-input").val("");
     
   });
   database.ref().on("child_added", function(snapshot){
     var sv = snapshot.val();
     var tname = $("<td>").text(sv.name);
     var tdestination = $("<td>").text(sv.destination);
-    var tFirstTrain = $("<td>").text(sv.FirstTrain);
-    var tFrequency = $("<td>").text(sv.Frequency);
+    var tfirstTrain = $("<td>").text(sv.firstTrain);
+    var tfrequency = $("<td>").text(sv.frequency);
     var trow = $("<tr>");
-    trow.append(tname, tdestination, tFirstTrain, tFrequency);
+    trow.append(tname, tdestination, tfirstTrain, tfrequency);
     $("tbody").append(trow);
 
 })
