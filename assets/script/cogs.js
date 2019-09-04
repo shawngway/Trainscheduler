@@ -19,14 +19,21 @@ $("#add-train").on("click", function (event) {
     var destination = $("#destination-input").val().trim();
     var firstTrain = $("#firstTrain-input").val().trim();
     var frequency = $("#frequency-input").val().trim();
-    // var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "year");
-    // var currentTime = moment();
-    // var theCurrentTime = moment(currentTime).format("hh:mm");
-    // var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
-    // var theRemainder = diffTime % frequency;
-    // var theMinutesTillTrain = frequency - theRemainder;
-    // var nextTrain = moment().add(theMinutesTillTrain, "minutes");
-    // var arrivalTime = moment(nextTrain).format("hh:mm");
+    var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "year");
+    console.log(firstTrainConverted);
+    var currentTime = moment();
+    console.log(currentTime);
+    var theCurrentTime = moment(currentTime).format("hh:mm");
+    console.log(theCurrentTime);
+    var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
+    console.log(diffTime);
+    var theRemainder = diffTime % frequency;
+    console.log(theRemainder);
+    var theMinutesTillTrain = frequency - theRemainder;
+    var nextTrain = moment().add(theMinutesTillTrain, "minutes");
+    console.log(nextTrain);
+    var arrivalTime = moment(nextTrain).format("hh:mm");
+    console.log(arrivalTime);
     database.ref().push({
         name: name,
         destination: destination,
@@ -46,7 +53,7 @@ $("#add-train").on("click", function (event) {
     })
     
     $("#name-input").val("");
-    $("#frequency-input").val("");
+    $("#destination-input").val("");
     $("#firstTrain-input").val("");
     $("#frequency-input").val("");
 
@@ -55,12 +62,12 @@ database.ref().on("child_added", function (snapshot) {
     var sv = snapshot.val();
     var tname = $("<td>").text(sv.name);
     var tdestination = $("<td>").text(sv.destination);
-    var tfirstTrain = $("<td>").text(sv.firstTrain);
+    var tfrequency = $("<td>").text(sv.frequency);
     // var tnextArrival = $("<td>").text(sv.arrivalTime);
     // var tminsAway = $("<td>").text(theMinutesTillTrain);
      //var tfrequency = $("<td>").text(sv.frequency);
     var trow = $("<tr>");
-    trow.append(tname, tdestination, tfirstTrain);
+    trow.append(tname, tdestination, tfrequency);
     $("tbody").append(trow);
 
 })
