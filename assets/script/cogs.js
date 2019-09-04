@@ -19,17 +19,32 @@ $("#add-train").on("click", function (event) {
     var destination = $("#destination-input").val().trim();
     var firstTrain = $("#firstTrain-input").val().trim();
     var frequency = $("#frequency-input").val().trim();
-    console.log(name);
+    // var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "year");
+    // var currentTime = moment();
+    // var theCurrentTime = moment(currentTime).format("hh:mm");
+    // var diffTime = moment().diff(moment(firstTrainConverted), "minutes");
+    // var theRemainder = diffTime % frequency;
+    // var theMinutesTillTrain = frequency - theRemainder;
+    // var nextTrain = moment().add(theMinutesTillTrain, "minutes");
+    // var arrivalTime = moment(nextTrain).format("hh:mm");
     database.ref().push({
         name: name,
         destination: destination,
         firstTrain: firstTrain,
         frequency: frequency,
+        // firstTrainConverted: firstTrainConverted,
+        // currentTime: currentTime,
+        // theCurrentTime: theCurrentTime,
+        // diffTime: diffTime,
+        // theRemainder: theRemainder,
+        // theMinutesTillTrain: theMinutesTillTrain,
+        // nextTrain: nextTrain,
+        // arrivalTime: arrivalTime,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
 
 
     })
-    console.log(name);
+    
     $("#name-input").val("");
     $("#frequency-input").val("");
     $("#firstTrain-input").val("");
@@ -41,11 +56,11 @@ database.ref().on("child_added", function (snapshot) {
     var tname = $("<td>").text(sv.name);
     var tdestination = $("<td>").text(sv.destination);
     var tfirstTrain = $("<td>").text(sv.firstTrain);
-    var tnextArrival = $("<td>").text();
-    var tminsAway = $("<td>").text();
+    // var tnextArrival = $("<td>").text(sv.arrivalTime);
+    // var tminsAway = $("<td>").text(theMinutesTillTrain);
      //var tfrequency = $("<td>").text(sv.frequency);
     var trow = $("<tr>");
-    trow.append(tname, tdestination, tfirstTrain, tnextArrival, tminsAway);
+    trow.append(tname, tdestination, tfirstTrain);
     $("tbody").append(trow);
 
 })
