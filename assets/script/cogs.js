@@ -39,6 +39,7 @@ $("#add-train").on("click", function (event) {
         destination: destination,
         firstTrain: firstTrain,
         frequency: frequency,
+        arrivalTime: arrivalTime,
         // firstTrainConverted: firstTrainConverted,
         // currentTime: currentTime,
         // theCurrentTime: theCurrentTime,
@@ -63,11 +64,12 @@ database.ref().on("child_added", function (snapshot) {
     var tname = $("<td>").text(sv.name);
     var tdestination = $("<td>").text(sv.destination);
     var tfrequency = $("<td>").text(sv.frequency);
+    var tarrivalTime = $("<td>").text(sv.arrivalTime);
     // var tnextArrival = $("<td>").text(sv.arrivalTime);
     // var tminsAway = $("<td>").text(theMinutesTillTrain);
      //var tfrequency = $("<td>").text(sv.frequency);
     var trow = $("<tr>");
-    trow.append(tname, tdestination, tfrequency);
+    trow.append(tname, tdestination, tfrequency, tarrivalTime);
     $("tbody").append(trow);
 
 })
