@@ -30,10 +30,13 @@ $("#add-train").on("click", function (event) {
     var theRemainder = diffTime % frequency;
     console.log(theRemainder);
     var theMinutesTillTrain = frequency - theRemainder;
+    console.log(theMinutesTillTrain);
     var nextTrain = moment().add(theMinutesTillTrain, "minutes");
     console.log(nextTrain);
     var arrivalTime = moment(nextTrain).format("hh:mm");
     console.log(arrivalTime);
+    var next = arrivalTime - theCurrentTime;
+    console.log(next);
     database.ref().push({
         name: name,
         destination: destination,
@@ -45,7 +48,7 @@ $("#add-train").on("click", function (event) {
         // theCurrentTime: theCurrentTime,
         // diffTime: diffTime,
         // theRemainder: theRemainder,
-        // theMinutesTillTrain: theMinutesTillTrain,
+        theMinutesTillTrain: theMinutesTillTrain,
         // nextTrain: nextTrain,
         // arrivalTime: arrivalTime,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
@@ -65,11 +68,13 @@ database.ref().on("child_added", function (snapshot) {
     var tdestination = $("<td>").text(sv.destination);
     var tfrequency = $("<td>").text(sv.frequency);
     var tarrivalTime = $("<td>").text(sv.arrivalTime);
+    var otheMinutesTillTrain = $("<td>").text(sv.theMinutesTillTrain);
+    // var tnextTrain = $("<td>").text(sv.nextTrain);
     // var tnextArrival = $("<td>").text(sv.arrivalTime);
     // var tminsAway = $("<td>").text(theMinutesTillTrain);
      //var tfrequency = $("<td>").text(sv.frequency);
     var trow = $("<tr>");
-    trow.append(tname, tdestination, tfrequency, tarrivalTime);
+    trow.append(tname, tdestination, tfrequency, tarrivalTime, otheMinutesTillTrain);
     $("tbody").append(trow);
 
 })
